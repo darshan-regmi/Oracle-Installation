@@ -1199,6 +1199,7 @@ brew install --cask docker
   -e ORACLE_PASSWORD=yourPassword123 \
   gvenzl/oracle-xe</code></pre>
             </div>
+            <p>Replace 'yourPassword123' with your own password.</p>
           </article>
 
           <!-- Option 2 -->
@@ -1227,6 +1228,7 @@ brew install --cask docker
   -e ORACLE_PWD=yourPassword123 \
   container-registry.oracle.com/database/free:latest</code></pre>
             </div>
+            <p>Replace 'yourPassword123' with your own password.</p>
           </article>
 
           <!-- Option 3 -->
@@ -1255,6 +1257,12 @@ brew install --cask docker
   -e ORACLE_ALLOW_REMOTE=true \
   oracleinanutshell/oracle-xe-11g</code></pre>
             </div>
+            <h5>Default credentials for 11g</h5>
+            <p>
+              <strong>Username:</strong> <span class="inline-code">system</span
+              ><br />
+              <strong>Password:</strong> <span class="inline-code">oracle</span>
+            </p>
           </article>
         </div>
       </section>
@@ -1295,6 +1303,7 @@ docker logs -f oracle-xe
 <span class="comment"># 4. Test connection when ready</span>
 docker exec -it oracle-xe sqlplus system/yourSecurePassword@XE</code></pre>
           </div>
+          <p>Replace 'yourSecurePassword' with your own password.</p>
         </div>
 
         <h3>Option B: Official Oracle Database</h3>
@@ -1333,6 +1342,7 @@ docker logs -f oracle-db
 <span class="comment"># 5. Connect when you see "DATABASE IS READY TO USE!"</span>
 docker exec -it oracle-db sqlplus system/yourSecurePassword@FREEPDB1</code></pre>
           </div>
+          <p>Replace 'yourSecurePassword' with your own password.</p>
         </div>
 
         <h3>Option C: Oracle 11g XE (Legacy)</h3>
@@ -1408,6 +1418,7 @@ docker exec -it oracle-db sqlplus system/yourPassword123@FREEPDB1
 docker exec -it oracle-11g sqlplus system/oracle@XE
 </code></pre>
         </div>
+        <p>Replace 'yourPassword123' with your actual password.</p>
 
         <h3>Connection Examples</h3>
         <div class="card">
