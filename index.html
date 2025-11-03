@@ -1375,7 +1375,7 @@ docker logs -f oracle-11g
 docker exec -it oracle-11g sqlplus system/oracle@XE
 
 <span class="comment"># ⚠️ Common Issue:</span>
-<span class="comment"># On Apple Silicon (M1/M2), you may see:</span>
+<span class="comment"># On Apple Silicon, you may see:</span>
 <span class="comment"># exec: "sqlplus": executable file not found in $PATH</span>
 <span class="comment"># This happens because the image is built for amd64 and sqlplus isn’t directly executable.</span>
 
