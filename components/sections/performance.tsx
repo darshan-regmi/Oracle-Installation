@@ -1,11 +1,18 @@
 export default function PerformanceSection() {
   return (
-    <div>
-      <h2>Performance & Optimization</h2>
+    <section className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-800">
+        Performance & Optimization
+      </h2>
 
-      <h3>Docker Resource Allocation</h3>
-      <p>Proper resource allocation is crucial for stable performance of Oracle 11g in Docker:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Docker Resource Allocation
+      </h3>
+      <p className="text-gray-600 mb-4 leading-relaxed">
+        Proper resource allocation is crucial for stable performance of Oracle
+        11g in Docker:
+      </p>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# docker-compose.yml example
 services:
   oracle-11g:
@@ -24,26 +31,44 @@ services:
       PGA_AGGREGATE_TARGET: 2048M`}</code>
       </pre>
 
-      <h3>Memory Optimization</h3>
-      <ul>
-        <li>Set <code>SGA_TARGET</code> to ~40–50% of available RAM</li>
-        <li>Set <code>PGA_AGGREGATE_TARGET</code> to ~25–35% of available RAM</li>
-        <li>Monitor usage with <code>docker stats oracle-11g</code></li>
-        <li>Adjust <code>PROCESSES</code> for expected concurrent connections</li>
+      <h3 className="text-2xl font-semibold mt-8 mb-3 text-gray-700">
+        Memory Optimization
+      </h3>
+      <ul className="list-disc pl-6 space-y-1 text-gray-600">
+        <li>
+          Set <code>SGA_TARGET</code> to ~40–50% of available RAM
+        </li>
+        <li>
+          Set <code>PGA_AGGREGATE_TARGET</code> to ~25–35% of available RAM
+        </li>
+        <li>
+          Monitor usage with <code>docker stats oracle-11g</code>
+        </li>
+        <li>
+          Adjust <code>PROCESSES</code> for expected concurrent connections
+        </li>
       </ul>
 
-      <h3>Storage Optimization</h3>
-      <ul>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Storage Optimization
+      </h3>
+      <ul className="list-disc pl-6 space-y-1 text-gray-600">
         <li>Use SSDs for Oracle data for better I/O performance</li>
         <li>Separate data files, redo logs, and temp files if possible</li>
         <li>Use named Docker volumes for better I/O than bind mounts</li>
-        <li>Monitor disk I/O via <code>iostat</code> or <code>docker stats</code></li>
+        <li>
+          Monitor disk I/O via <code>iostat</code> or <code>docker stats</code>
+        </li>
         <li>Pre-size data files to reduce extent fragmentation</li>
       </ul>
 
-      <h3>Connection Pooling</h3>
-      <p>Connection pooling reduces overhead for multiple clients:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Connection Pooling
+      </h3>
+      <p className="text-gray-600 mb-4 leading-relaxed">
+        Connection pooling reduces overhead for multiple clients:
+      </p>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`// Node.js example
 const oracledb = require('oracledb');
 
@@ -68,17 +93,25 @@ try {
 }`}</code>
       </pre>
 
-      <h3>Query Optimization</h3>
-      <ul>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Query Optimization
+      </h3>
+      <ul className="list-disc pl-6 space-y-1 text-gray-600">
         <li>Create indexes on frequently queried columns</li>
-        <li>Analyze execution plans with <code>EXPLAIN PLAN</code></li>
+        <li>
+          Analyze execution plans with <code>EXPLAIN PLAN</code>
+        </li>
         <li>Avoid full table scans for large tables</li>
         <li>Use proper data types to reduce storage overhead</li>
-        <li>Write queries with selective <code>WHERE</code> clauses</li>
+        <li>
+          Write queries with selective <code>WHERE</code> clauses
+        </li>
       </ul>
 
-      <h3>Monitoring Performance</h3>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Monitoring Performance
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`-- Monitor active sessions
 SELECT sid, username, status, wait_event 
 FROM v$session 
@@ -99,8 +132,10 @@ FROM dba_data_files
 GROUP BY tablespace_name;`}</code>
       </pre>
 
-      <h3>Docker Performance Tuning</h3>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Docker Performance Tuning
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# Limit log size to reduce I/O
 services:
   oracle-11g:
@@ -118,9 +153,13 @@ services:
       - oracle-data:/opt/oracle/oradata:Z`}</code>
       </pre>
 
-      <h3>Benchmarking</h3>
-      <p>Test workloads to measure performance improvements:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Benchmarking
+      </h3>
+      <p className="text-gray-600 mb-4 leading-relaxed">
+        Test workloads to measure performance improvements:
+      </p>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`-- Insert benchmark
 DECLARE
   v_start TIMESTAMP;
@@ -133,14 +172,15 @@ BEGIN
   COMMIT;
 
   DBMS_OUTPUT.PUT_LINE('Elapsed: ' || (SYSTIMESTAMP - v_start));
-END;
-`}</code>
+END;`}</code>
       </pre>
 
-      <div className="info-box">
-        <strong>Tips:</strong> Allocate sufficient CPU/memory, use connection pooling, create indexes, optimize queries, 
-        and monitor actively. Apple Silicon users may need to run images via Rosetta for x86 compatibility.
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-8 rounded-lg text-gray-700">
+        <strong className="block mb-2">💡 Tips:</strong>
+        Allocate sufficient CPU/memory, use connection pooling, create indexes,
+        optimize queries, and monitor actively. Apple Silicon users may need to
+        run images via Rosetta for x86 compatibility.
       </div>
-    </div>
-  )
+    </section>
+  );
 }

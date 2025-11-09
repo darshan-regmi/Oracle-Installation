@@ -1,11 +1,17 @@
 export default function MaintenanceSection() {
   return (
-    <div>
-      <h2>Maintenance & Upgrades</h2>
+    <section className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-800">
+        Maintenance & Upgrades
+      </h2>
 
-      <h3>Backup Strategy</h3>
-      <p>Implement a robust backup strategy:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Backup Strategy
+      </h3>
+      <p className="text-gray-600 mb-4 leading-relaxed">
+        Implement a robust backup strategy:
+      </p>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# Method 1: Logical backup with Data Pump (Recommended for portability)
 docker exec oracle-db expdp system/YourPassword@XEPDB1 \\
   DIRECTORY=dpump_dir \\
@@ -37,9 +43,13 @@ docker exec oracle-db expdp system/YourPassword@XEPDB1 \\
 find $BACKUP_DIR -name "*.tar.gz" -mtime +$RETENTION_DAYS -delete`}</code>
       </pre>
 
-      <h3>Restore Procedure</h3>
-      <p>Test your restore process regularly:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Restore Procedure
+      </h3>
+      <p className="text-gray-600 mb-4 leading-relaxed">
+        Test your restore process regularly:
+      </p>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# Restore from logical backup (Data Pump)
 docker exec oracle-db impdp system/YourPassword@XEPDB1 \\
   DIRECTORY=dpump_dir \\
@@ -68,9 +78,10 @@ EXIT;
 EOF`}</code>
       </pre>
 
-      <h3>Upgrading Oracle</h3>
-      <p>Safe upgrade procedure:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Upgrading Oracle
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# Step 1: Create full backup before upgrade
 docker exec oracle-db expdp system/YourPassword@XEPDB1 \\
   DIRECTORY=dpump_dir \\
@@ -108,9 +119,10 @@ docker exec -it oracle-db-new sqlplus system/YourPassword123@XEPDB1
 docker rm oracle-db-old`}</code>
       </pre>
 
-      <h3>Export/Import Data</h3>
-      <p>Transfer data between instances:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Export/Import Data
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# Export specific schema
 docker exec oracle-db expdp system/YourPassword@XEPDB1 \\
   DIRECTORY=dpump_dir \\
@@ -138,9 +150,10 @@ docker exec oracle-db-dest impdp system/YourPassword@XEPDB1 \\
   DUMPFILE=schema_backup.dmp`}</code>
       </pre>
 
-      <h3>Log Management</h3>
-      <p>Monitor and manage database logs:</p>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Log Management
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`# View Docker container logs
 docker logs oracle-db
 
@@ -173,11 +186,13 @@ END;
 EOF`}</code>
       </pre>
 
-      <h3>Regular Maintenance Schedule</h3>
-      <ul>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Regular Maintenance Schedule
+      </h3>
+      <ul className="list-disc pl-6 space-y-2 text-gray-600">
         <li>
           <strong>Daily:</strong>
-          <ul>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Verify backups completed successfully</li>
             <li>
               Monitor disk space usage (<code>df -h</code>)
@@ -187,7 +202,7 @@ EOF`}</code>
         </li>
         <li>
           <strong>Weekly:</strong>
-          <ul>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Analyze database performance metrics</li>
             <li>Review security audit logs</li>
             <li>
@@ -197,7 +212,7 @@ EOF`}</code>
         </li>
         <li>
           <strong>Monthly:</strong>
-          <ul>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Test backup and restore procedures</li>
             <li>Perform full database consistency checks</li>
             <li>Update patches and security fixes</li>
@@ -205,7 +220,7 @@ EOF`}</code>
         </li>
         <li>
           <strong>Quarterly:</strong>
-          <ul>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Plan major upgrades</li>
             <li>Review and update backup retention policies</li>
             <li>Conduct disaster recovery drills</li>
@@ -213,8 +228,10 @@ EOF`}</code>
         </li>
       </ul>
 
-      <h3>Database Health Checks</h3>
-      <pre>
+      <h3 className="text-2xl font-semibold mt-10 mb-3 text-gray-700">
+        Database Health Checks
+      </h3>
+      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
         <code>{`-- Check database status
 SELECT name, open_cursors, open_database_links FROM v$database;
 
@@ -235,11 +252,12 @@ SELECT * FROM v$lock WHERE type NOT IN ('RT', 'MD');
 DBMS_REPAIR.CHECK_OBJECT('APP_SCHEMA', 'TABLE_NAME');`}</code>
       </pre>
 
-      <div className="info-box">
-        <strong>Best Practice:</strong> Automate backups with cron jobs, test
-        restoration monthly, maintain detailed logs, and keep clear
-        documentation of all maintenance procedures.
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-8 rounded-lg text-gray-700">
+        <strong className="block mb-2">💡 Best Practice:</strong>
+        Automate backups with cron jobs, test restoration monthly, maintain
+        detailed logs, and keep clear documentation of all maintenance
+        procedures.
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,132 +1,156 @@
 export default function SecuritySection() {
   return (
-    <div>
-      <h2>Security Best Practices</h2>
+    <section className="max-w-4xl mx-auto px-6 py-12 space-y-10">
+      <h2 className="text-3xl font-bold text-foreground mb-4">
+        Security Best Practices
+      </h2>
 
-      <h3>Password Security</h3>
-      <div className="warning-box">
-        <strong>Critical:</strong> Never use the default password (<code>oracle</code>) in production
-      </div>
-      <ul>
-        <li>Use strong passwords (minimum 12 characters, ideally 16+)</li>
-        <li>Include uppercase, lowercase, numbers, and special symbols</li>
-        <li>Store passwords securely using password managers or secrets management systems</li>
-        <li>Rotate passwords regularly (every 90 days recommended)</li>
-        <li>Never commit credentials to version control - use environment variables</li>
-      </ul>
+      {/* Password Security */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold text-foreground">
+          Password Security
+        </h3>
+        <div className="warning-box p-4 rounded-lg border border-red-400 bg-red-50 text-sm md:text-base">
+          <strong>Critical:</strong> Never use the default password (
+          <code>oracle</code>) in production.
+        </div>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground text-sm md:text-base">
+          <li>Use strong passwords (minimum 12–16 characters)</li>
+          <li>Include uppercase, lowercase, numbers, and special symbols</li>
+          <li>
+            Store passwords securely in password managers or secret vaults
+          </li>
+          <li>Rotate passwords regularly (every 90 days recommended)</li>
+          <li>Never commit credentials to Git — use environment variables</li>
+        </ul>
 
-      <p>Strong password example:</p>
-      <pre>
-        <code>{`# Good
+        <p className="font-medium mt-4">Strong password example:</p>
+        <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm">
+          <code>{`# Good
 Oracle#Secure2025@Prod
 
 # Bad
 password123
 oracle
 system`}</code>
-      </pre>
+        </pre>
+      </div>
 
-      <h3>Database User Permissions (Least Privilege)</h3>
-      <p>Apply principle of least privilege - grant minimal necessary permissions:</p>
-      <pre>
-        <code>{`-- Create application user with limited privileges
+      {/* Least Privilege */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">
+          Database User Permissions (Least Privilege)
+        </h3>
+        <p>
+          Apply the principle of least privilege — grant only minimal
+          permissions:
+        </p>
+        <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm">
+          <code>{`-- Create application user with limited privileges
 CREATE USER app_user IDENTIFIED BY "Oracle#Secure2025@AppUser";
 
--- Grant only connection permission
 GRANT CONNECT TO app_user;
-
--- Grant specific table permissions
 GRANT SELECT, INSERT, UPDATE ON app_schema.users TO app_user;
 
--- Do NOT grant DBA or SYSDBA privileges unless absolutely necessary
--- Never use SYSTEM user for application connections
+-- Do NOT grant DBA or SYSDBA privileges
+-- Never use SYSTEM for app connections
 
--- Audit sensitive operations
 AUDIT SELECT ON system.aud$ BY app_user;
 AUDIT DELETE ON app_schema.users BY app_user;`}</code>
-      </pre>
+        </pre>
+      </div>
 
-      <h3>Container Security</h3>
-      <p>Docker-specific security configurations for Oracle 11g:</p>
-      <pre>
-        <code>{`# Run as non-root user in docker run
-docker run -d \
-  --name oracle-11g \
-  -p 1521:1521 -p 8080:8080 \
-  -e ORACLE_PASSWORD="YourStrongPassword" \
-  --user 1000:1000 \
-  --read-only \
-  --tmpfs /tmp \
-  --tmpfs /run \
-  --security-opt no-new-privileges:true \
+      {/* Container Security */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">Container Security</h3>
+        <p>Secure your Oracle container by using limited privileges:</p>
+        <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm">
+          <code>{`docker run -d \\
+  --name oracle-11g \\
+  -p 1521:1521 -p 8080:8080 \\
+  -e ORACLE_PASSWORD="YourStrongPassword" \\
+  --user 1000:1000 \\
+  --read-only \\
+  --tmpfs /tmp \\
+  --tmpfs /run \\
+  --security-opt no-new-privileges:true \\
   oracleinanutshell/oracle-xe-11g`}</code>
-      </pre>
+        </pre>
+      </div>
 
-      <h3>Network Security</h3>
-      <ul>
-        <li>Restrict database port access to known IPs using firewall rules</li>
-        <li>Do not expose port 1521 to the public internet; use VPN or SSH tunnels</li>
-        <li>Enable TLS/SSL encryption for client connections</li>
-        <li>
-          Sample SSL setup:
-          <pre>
-            <code>{`ALTER SYSTEM SET ssl_wallet_location='file:/u01/app/oracle/wallet';
+      {/* Network Security */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">Network Security</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground text-sm md:text-base">
+          <li>Restrict database access to known IPs</li>
+          <li>Do not expose port 1521 publicly — use VPN or SSH tunneling</li>
+          <li>Enable TLS/SSL for client connections</li>
+          <li>
+            Example SSL configuration:
+            <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm mt-2">
+              <code>{`ALTER SYSTEM SET ssl_wallet_location='file:/u01/app/oracle/wallet';
 ALTER SYSTEM SET remote_login_passwordfile=EXCLUSIVE SCOPE=SPFILE;`}</code>
-          </pre>
-        </li>
-        <li>Use host-based access lists for connection authentication</li>
-      </ul>
+            </pre>
+          </li>
+        </ul>
+      </div>
 
-      <h3>Encryption</h3>
-      <p>Enable Oracle encryption for sensitive data:</p>
-      <pre>
-        <code>{`-- Transparent Data Encryption (TDE) at rest
+      {/* Encryption */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">Encryption</h3>
+        <p>Enable encryption for sensitive data and tablespaces:</p>
+        <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm">
+          <code>{`-- Transparent Data Encryption (TDE)
 ALTER SYSTEM SET db_recovery_file_dest_size=50G;
 
--- Encrypt tablespaces
 CREATE TABLESPACE encrypted_ts
   DATAFILE SIZE 100M
   ENCRYPTION USING 'AES256'
   DEFAULT STORAGE;
 
--- Encrypt column-level data
 CREATE TABLE users (
   user_id NUMBER PRIMARY KEY,
   name VARCHAR2(100) ENCRYPT,
   ssn VARCHAR2(11) ENCRYPT USING 'AES256'
 );`}</code>
-      </pre>
+        </pre>
+      </div>
 
-      <h3>Backup Security</h3>
-      <ul>
-        <li>Encrypt all backup files using strong encryption</li>
-        <li>Store backups in secure, separate locations (off-site, cloud)</li>
-        <li>Test restoration regularly (monthly minimum)</li>
-        <li>Implement retention policies and versioning</li>
-        <li>Document and test disaster recovery procedures</li>
-      </ul>
+      {/* Backup Security */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">Backup Security</h3>
+        <ul className="list-disc pl-6 space-y-2 text-muted-foreground text-sm md:text-base">
+          <li>Encrypt backup files using AES-256</li>
+          <li>Store backups securely off-site or in the cloud</li>
+          <li>Test restoration monthly</li>
+          <li>Implement retention policies and versioning</li>
+          <li>Document disaster recovery procedures</li>
+        </ul>
+      </div>
 
-      <h3>Auditing & Logging</h3>
-      <p>Track all database activities:</p>
-      <pre>
-        <code>{`-- Enable audit trail
-ALTER SESSION SET AUDIT_TRAIL=DB;
-
--- Audit specific operations
+      {/* Auditing */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-semibold">Auditing & Logging</h3>
+        <p>Monitor and log database activity to detect anomalies:</p>
+        <pre className="overflow-x-auto bg-muted p-4 rounded-md text-sm">
+          <code>{`ALTER SESSION SET AUDIT_TRAIL=DB;
 AUDIT ALL BY app_user;
 AUDIT INSERT, UPDATE, DELETE ON app_schema.sensitive_table;
 AUDIT CONNECT, SYSDBA;
 
--- View audit logs
 SELECT username, action_name, timestamp 
 FROM aud$ 
 WHERE timestamp > SYSDATE - 1
 ORDER BY timestamp DESC;`}</code>
-      </pre>
-
-      <div className="info-box">
-        <strong>Security Checklist:</strong> Change default passwords, limit user permissions, enable encryption, secure backups, enable auditing, and regularly review security logs.
+        </pre>
       </div>
-    </div>
-  )
+
+      {/* Summary Info Box */}
+      <div className="info-box p-4 rounded-lg border border-blue-400 bg-blue-50 text-sm md:text-base">
+        <strong>Security Checklist:</strong> Change default passwords, apply
+        least privilege, enable encryption, secure backups, enable auditing, and
+        review logs regularly.
+      </div>
+    </section>
+  );
 }

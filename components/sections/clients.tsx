@@ -1,13 +1,22 @@
 export default function ClientsSection() {
   return (
-    <div>
-      <h2>Client Libraries & Language Bindings</h2>
+    <section className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-gray-800 dark:text-gray-100 transition-colors">
+        Client Libraries & Language Bindings
+      </h2>
 
-      <h3>Python Connection</h3>
-      <p>
-        Using <code>oracledb</code> (official Oracle client):
+      {/* Python */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Python Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using{" "}
+        <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
+          oracledb
+        </code>{" "}
+        (official Oracle client):
       </p>
-      <pre>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`# Install
 pip install oracledb
 
@@ -38,14 +47,21 @@ pool = oracledb.create_pool(
 
 connection = pool.acquire()
 # ... use connection ...
-pool.release(connection)`}</code>
+pool.release(connection`}</code>
       </pre>
 
-      <h3>Node.js Connection</h3>
-      <p>
-        Using <code>node-oracledb</code>:
+      {/* Node.js */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Node.js Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using{" "}
+        <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
+          node-oracledb
+        </code>
+        :
       </p>
-      <pre>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`// Install
 npm install oracledb
 
@@ -81,9 +97,14 @@ const conn = await pool.getConnection();
 await conn.close();`}</code>
       </pre>
 
-      <h3>Java Connection</h3>
-      <p>Using JDBC:</p>
-      <pre>
+      {/* Java */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Java Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using JDBC:
+      </p>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`// Maven dependency
 <dependency>
   <groupId>com.oracle.database.jdbc</groupId>
@@ -110,11 +131,18 @@ try (Connection conn = DriverManager.getConnection(url, user, password)) {
 }`}</code>
       </pre>
 
-      <h3>Go Connection</h3>
-      <p>
-        Using <code>godror</code>:
+      {/* Go */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Go Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using{" "}
+        <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
+          godror
+        </code>
+        :
       </p>
-      <pre>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`// Install
 go get github.com/godror/godror
 
@@ -148,9 +176,14 @@ func main() {
 }`}</code>
       </pre>
 
-      <h3>PHP Connection</h3>
-      <p>Using PDO or OCI8:</p>
-      <pre>
+      {/* PHP */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        PHP Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using PDO or OCI8:
+      </p>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`// Using PDO
 $dsn = 'oci:dbname=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
         (HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)))';
@@ -180,9 +213,14 @@ oci_free_statement($stid);
 oci_close($connection);`}</code>
       </pre>
 
-      <h3>C# Connection</h3>
-      <p>Using ODP.NET:</p>
-      <pre>
+      {/* C# */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        C# Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using ODP.NET:
+      </p>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`// NuGet package
 Install-Package Oracle.ManagedDataAccess.Core
 
@@ -209,11 +247,18 @@ using (OracleConnection con = new OracleConnection(constr))
 }`}</code>
       </pre>
 
-      <h3>Ruby Connection</h3>
-      <p>
-        Using <code>ruby-oci8</code>:
+      {/* Ruby */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Ruby Connection
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Using{" "}
+        <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
+          ruby-oci8
+        </code>
+        :
       </p>
-      <pre>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`# Install
 gem install ruby-oci8
 
@@ -227,8 +272,11 @@ end
 conn.logoff`}</code>
       </pre>
 
-      <h3>Connection Best Practices</h3>
-      <ul>
+      {/* Best Practices */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Connection Best Practices
+      </h3>
+      <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 transition-colors">
         <li>
           <strong>Use Connection Pooling:</strong> Reuse connections instead of
           creating new ones frequently
@@ -254,9 +302,14 @@ conn.logoff`}</code>
         </li>
       </ul>
 
-      <h3>Sample Application Pattern</h3>
-      <p>Generic pattern for any language connecting to Oracle 11g:</p>
-      <pre>
+      {/* Sample Pattern */}
+      <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
+        Sample Application Pattern
+      </h3>
+      <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
+        Generic pattern for any language connecting to Oracle 11g:
+      </p>
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <code>{`Host: localhost
 Port: 1521
 Service/SID: XE
@@ -269,11 +322,11 @@ Connection String Examples:
 - TNS: XE (requires tnsnames.ora)`}</code>
       </pre>
 
-      <div className="info-box">
+      <div className="bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded-lg mb-6 text-gray-800 dark:text-gray-200 transition-colors">
         <strong>Tip:</strong> Always use the latest version of your language's
         Oracle driver. Official drivers (oracledb for Python, node-oracledb for
         Node.js, JDBC for Java) ensure compatibility and feature support.
       </div>
-    </div>
+    </section>
   );
 }

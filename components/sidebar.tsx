@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { Moon, Sun, Code2, ChevronDown } from "lucide-react"
-import { useState } from "react"
+import { useState } from "react";
+import { Moon, Sun, Code2, ChevronDown, Menu, X } from "lucide-react";
 
 interface SidebarProps {
-  activeSection: string
-  setActiveSection: (section: string) => void
-  isDark: boolean
-  toggleDarkMode: () => void
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+  isDark: boolean;
+  toggleDarkMode: () => void;
 }
 
 const sections = [
@@ -22,91 +22,144 @@ const sections = [
   { id: "performance", label: "Performance" },
   { id: "maintenance", label: "Maintenance" },
   { id: "faqs", label: "FAQs" },
-]
+];
 
-export default function Sidebar({ activeSection, setActiveSection, isDark, toggleDarkMode }: SidebarProps) {
-  const [expandedResources, setExpandedResources] = useState(false)
+export default function Sidebar({
+  activeSection,
+  setActiveSection,
+  isDark,
+  toggleDarkMode,
+}: SidebarProps) {
+  const [expandedResources, setExpandedResources] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSectionClick = (id: string) => {
+    setActiveSection(id);
+    setIsOpen(false); // auto-close on mobile
+  };
 
   return (
-    <aside className="w-64 bg-sidebar border-r border-sidebar-border overflow-y-auto h-screen sticky top-0">
-      {/* Header */}
-      <div className="sticky top-0 bg-sidebar border-b border-sidebar-border p-6 z-10">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="p-2 bg-sidebar-primary/10 rounded-lg">
-            <Code2 className="w-5 h-5 text-sidebar-primary" />
+    <>
+      {/* Floating Hamburger Icon on Small Screens */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-transparent text-sidebar-foreground shadow-none hover:bg-sidebar-accent/10 transition-all duration-200 md:hidden"
+        aria-label="Open Menu"
+      >
+        <Menu className="w-6 h-6" />
+      </button>
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed md:static inset-y-0 left-0 transform md:translate-x-0 transition-transform duration-300 z-50
+        w-64 bg-sidebar border-r border-sidebar-border overflow-y-auto h-screen ${
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        }`}
+      >
+        {/* Header */}
+        <div className="sticky top-0 bg-sidebar border-b border-sidebar-border p-6 z-10 flex items-center justify-between">
+          <div className="flex items-center gap-2 mb-0">
+            <div className="p-2 bg-sidebar-primary/10 rounded-lg">
+              <Code2 className="w-5 h-5 text-sidebar-primary" />
+            </div>
+            <h1 className="text-lg font-bold text-sidebar-primary">
+              Oracle DB
+            </h1>
           </div>
-          <h1 className="text-lg font-bold text-sidebar-primary">Oracle DB</h1>
+
+          {/* Close button only on small screens */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-2 rounded-md hover:bg-accent/10 transition-colors md:hidden"
+            aria-label="Close Menu"
+          >
+            <X className="w-5 h-5 text-sidebar-foreground" />
+          </button>
         </div>
 
         {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="w-full flex items-center justify-between px-3 py-2.5 rounded-md bg-sidebar-accent/10 hover:bg-sidebar-accent/20 transition-colors duration-200 text-sidebar-foreground text-sm font-medium"
+          className="w-full flex items-center justify-between px-3 py-2.5 rounded-md bg-sidebar-accent/10 hover:bg-sidebar-accent/20 transition-colors duration-200 text-sidebar-foreground text-sm font-medium mt-4"
         >
           <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
           <div className="p-1 bg-sidebar-primary/20 rounded transition-transform">
-            {isDark ? <Sun className="w-4 h-4 text-sidebar-primary" /> : <Moon className="w-4 h-4 text-sidebar-primary" />}
+            {isDark ? (
+              <Sun className="w-4 h-4 text-sidebar-primary" />
+            ) : (
+              <Moon className="w-4 h-4 text-sidebar-primary" />
+            )}
           </div>
         </button>
-      </div>
 
-      {/* Navigation */}
-      <nav className="p-4 space-y-1">
-        {sections.map((section) => (
+        {/* Navigation */}
+        <nav className="p-4 space-y-1">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => handleSectionClick(section.id)}
+              className={`w-full text-left px-4 py-2.5 rounded-md transition-all duration-200 ${
+                activeSection === section.id
+                  ? "bg-sidebar-primary text-sidebar-primary-foreground font-semibold shadow-sm"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/10"
+              }`}
+            >
+              {section.label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Resources Section */}
+        <div className="p-4 border-t border-sidebar-border mt-6">
           <button
-            key={section.id}
-            onClick={() => setActiveSection(section.id)}
-            className={`w-full text-left px-4 py-2.5 rounded-md transition-all duration-200 ${
-              activeSection === section.id
-                ? "bg-sidebar-primary text-sidebar-primary-foreground font-semibold shadow-sm"
-                : "text-sidebar-foreground hover:bg-sidebar-accent/10"
-            }`}
+            onClick={() => setExpandedResources(!expandedResources)}
+            className="flex items-center gap-2 text-xs font-semibold text-sidebar-foreground/70 mb-3 hover:text-sidebar-foreground transition-colors w-full"
           >
-            {section.label}
+            Resources
+            <ChevronDown
+              className={`w-3 h-3 transition-transform duration-200 ${
+                expandedResources ? "rotate-180" : ""
+              }`}
+            />
           </button>
-        ))}
-      </nav>
+          {expandedResources && (
+            <div className="space-y-2 animate-in fade-in duration-200">
+              <a
+                href="https://docs.oracle.com/en/database/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
+              >
+                Official Oracle Documentation
+              </a>
+              <a
+                href="https://hub.docker.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
+              >
+                Docker Hub Registry
+              </a>
+              <a
+                href="https://github.com/oracle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
+              >
+                Oracle GitHub Repository
+              </a>
+            </div>
+          )}
+        </div>
+      </aside>
 
-      {/* Resources Section */}
-      <div className="p-4 border-t border-sidebar-border mt-6">
-        <button
-          onClick={() => setExpandedResources(!expandedResources)}
-          className="flex items-center gap-2 text-xs font-semibold text-sidebar-foreground/70 mb-3 hover:text-sidebar-foreground transition-colors w-full"
-        >
-          Resources
-          <ChevronDown
-            className={`w-3 h-3 transition-transform duration-200 ${expandedResources ? "rotate-180" : ""}`}
-          />
-        </button>
-        {expandedResources && (
-          <div className="space-y-2 animate-in fade-in duration-200">
-            <a
-              href="https://docs.oracle.com/en/database/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
-            >
-              Official Oracle Documentation
-            </a>
-            <a
-              href="https://hub.docker.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
-            >
-              Docker Hub Registry
-            </a>
-            <a
-              href="https://github.com/oracle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-xs text-sidebar-primary hover:text-sidebar-primary/80 transition-colors duration-200 hover:underline"
-            >
-              Oracle GitHub Repository
-            </a>
-          </div>
-        )}
-      </div>
-    </aside>
-  )
+      {/* Backdrop for Mobile */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden z-40"
+        />
+      )}
+    </>
+  );
 }
