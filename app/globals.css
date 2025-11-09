@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.6%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.6%;
+  --primary: 261 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 3.6%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 39.2%;
+  --accent: 0 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 261 100% 50%;
+  --chart-1: 261 100% 50%;
+  --chart-2: 0 100% 50%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 198 100% 50%;
+  --chart-5: 272 80% 56%;
+  --radius: 0.5rem;
+  --sidebar: 261 100% 96%;
+  --sidebar-foreground: 261 50% 30%;
+  --sidebar-primary: 261 100% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 100% 50%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 0 0% 89.8%;
+  --sidebar-ring: 261 100% 50%;
+}
+
+.dark {
+  --background: 0 0% 3.6%;
+  --foreground: 0 0% 98.4%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 98.4%;
+  --primary: 261 100% 60%;
+  --primary-foreground: 0 0% 3.6%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98.4%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 100% 60%;
+  --accent-foreground: 0 0% 3.6%;
+  --destructive: 0 100% 55%;
+  --destructive-foreground: 0 0% 98.4%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 261 100% 60%;
+  --chart-1: 261 100% 60%;
+  --chart-2: 0 100% 60%;
+  --chart-3: 38 92% 60%;
+  --chart-4: 198 100% 60%;
+  --chart-5: 272 80% 66%;
+  --sidebar: 261 20% 12%;
+  --sidebar-foreground: 0 0% 98.4%;
+  --sidebar-primary: 261 100% 60%;
+  --sidebar-primary-foreground: 0 0% 3.6%;
+  --sidebar-accent: 0 100% 60%;
+  --sidebar-accent-foreground: 0 0% 3.6%;
+  --sidebar-border: 0 0% 14.9%;
+  --sidebar-ring: 261 100% 60%;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50 transition-colors duration-200;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Code block styling */
+pre {
+  @apply bg-card rounded-lg p-4 overflow-x-auto border border-border;
+}
+
+code {
+  @apply font-mono text-sm;
+}
+
+pre code {
+  @apply text-foreground;
+}
+
+/* Syntax highlighting for code blocks in dark mode */
+.dark pre {
+  @apply bg-slate-950 border-slate-800;
+}
+
+.dark pre code {
+  @apply text-slate-100;
+}
+
+/* Prose styling for better readability */
+.prose-content h2 {
+  @apply text-2xl font-bold mt-8 mb-4 scroll-mt-20;
+}
+
+.prose-content h3 {
+  @apply text-xl font-semibold mt-6 mb-3 scroll-mt-20;
+}
+
+.prose-content h4 {
+  @apply text-lg font-semibold mt-4 mb-2;
+}
+
+.prose-content p {
+  @apply leading-relaxed mb-4;
+}
+
+.prose-content ul,
+.prose-content ol {
+  @apply ml-6 mb-4;
+}
+
+.prose-content li {
+  @apply mb-2;
+}
+
+.prose-content table {
+  @apply w-full border-collapse;
+}
+
+.prose-content th,
+.prose-content td {
+  @apply border border-border px-4 py-2 text-left;
+}
+
+.prose-content th {
+  @apply bg-muted font-semibold;
+}
+
+.prose-content a {
+  @apply text-primary hover:underline transition-colors;
+}
+
+/* Info, warning, and success boxes */
+.info-box {
+  @apply bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-500 p-4 rounded mb-4 text-blue-900 dark:text-blue-100;
+}
+
+.info-box strong {
+  @apply text-blue-700 dark:text-blue-300;
+}
+
+.warning-box {
+  @apply bg-yellow-50 dark:bg-yellow-950 border-l-4 border-yellow-500 p-4 rounded mb-4 text-yellow-900 dark:text-yellow-100;
+}
+
+.warning-box strong {
+  @apply text-yellow-700 dark:text-yellow-300;
+}
+
+.success-box {
+  @apply bg-green-50 dark:bg-green-950 border-l-4 border-green-500 p-4 rounded mb-4 text-green-900 dark:text-green-100;
+}
+
+.success-box strong {
+  @apply text-green-700 dark:text-green-300;
+}
+
+/* Enhanced box styling for better dark mode contrast */
+.info-box code,
+.warning-box code,
+.success-box code {
+  @apply px-1.5 py-0.5 rounded bg-white dark:bg-black/30;
+}
+
+/* Smooth transitions for theme switching */
+html {
+  @apply transition-colors duration-300;
+}
