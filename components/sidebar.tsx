@@ -16,6 +16,7 @@ const sections = [
   { id: "quick-start", label: "Quick Start" },
   { id: "docker-setup", label: "Docker Setup" },
   { id: "connection", label: "Connection" },
+  { id: "dump-file", label: "Dump File" },
   { id: "clients", label: "Client Tools" },
   { id: "troubleshooting", label: "Troubleshooting" },
   { id: "security", label: "Security" },

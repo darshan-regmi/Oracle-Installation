@@ -1,18 +1,24 @@
 import { useState } from "react";
 
-function FAQItem({ question, children }) {
+function FAQItem({
+  question,
+  children,
+}: {
+  question: string;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="mb-4 border rounded-lg dark:border-gray-700">
+    <div className="mb-4 border rounded-lg border-gray-200 dark:border-gray-700 transition-colors">
       <button
         onClick={() => setOpen(!open)}
         className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 flex justify-between items-center font-semibold text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-200 transition-colors"
       >
-        {question}
+        <span>{question}</span>
         <span>{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div className="p-4 bg-white dark:bg-gray-900 dark:text-gray-300 transition-colors">
+        <div className="p-4 bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300 transition-colors">
           {children}
         </div>
       )}
@@ -23,11 +29,11 @@ function FAQItem({ question, children }) {
 export default function FAQsSection() {
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-800">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100 transition-colors">
         Frequently Asked Questions
       </h2>
 
-      <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         General Questions
       </h3>
 
@@ -59,7 +65,7 @@ export default function FAQsSection() {
         Maintenance and Security sections.
       </FAQItem>
 
-      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         Installation Questions
       </h3>
 
@@ -67,7 +73,7 @@ export default function FAQsSection() {
         Initial startup typically takes 2-5 minutes as Oracle initializes the
         database. Subsequent starts are much faster (under 30 seconds). Check
         progress with <code>docker logs -f oracle-db</code> and look for
-        "DATABASE IS READY TO USE".
+        &quot;DATABASE IS READY TO USE&quot;.
       </FAQItem>
 
       <FAQItem question="Can I use a custom password?">
@@ -88,7 +94,7 @@ export default function FAQsSection() {
         comfortable for your workflow.
       </FAQItem>
 
-      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         Connection & Access Questions
       </h3>
 
@@ -115,10 +121,11 @@ export default function FAQsSection() {
       <FAQItem question="What connection tools and languages are supported?">
         Oracle supports many clients: SQL*Plus, DBeaver, SQL Developer, and
         language libraries for Python, Node.js, Java, PHP, etc. Connection
-        strings vary by tool—see the Connection & Tools section for examples.
+        strings vary by tool—see the Connection &amp; Tools section for
+        examples.
       </FAQItem>
 
-      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         Data & Persistence Questions
       </h3>
 
@@ -141,7 +148,7 @@ export default function FAQsSection() {
         tools. See the Maintenance section for details.
       </FAQItem>
 
-      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         Performance & Resource Questions
       </h3>
 
@@ -170,14 +177,14 @@ export default function FAQsSection() {
         <code>V$SQLAREA</code>, etc.).
       </FAQItem>
 
-      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700">
+      <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-700 dark:text-gray-200 transition-colors">
         Troubleshooting Questions
       </h3>
 
       <FAQItem question="My container keeps crashing. What should I do?">
         Check logs with <code>docker logs oracle-db</code> for error messages.
         Common causes: insufficient memory (increase Docker allocation),
-        corrupted data (try recreating), or initialization failures. See
+        corrupted data (try recreating), or initialization failures. See the
         Troubleshooting section for detailed solutions.
       </FAQItem>
 
@@ -197,7 +204,7 @@ export default function FAQsSection() {
         <code>--platform linux/amd64</code> when pulling and running images.
       </FAQItem>
 
-      <div className="bg-green-50 border-l-4 border-green-400 p-4 mt-6 rounded-lg text-gray-700">
+      <div className="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-400 p-4 mt-6 rounded-lg text-gray-700 dark:text-gray-200 transition-colors">
         Still have questions? Check the Troubleshooting section for more
         detailed solutions, or reach out for community support through GitHub
         discussions.

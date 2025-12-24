@@ -8,6 +8,7 @@ import PrerequisitesSection from "@/components/sections/prerequisites"
 import QuickStartSection from "@/components/sections/quick-start"
 import DockerSetupSection from "@/components/sections/docker-setup"
 import ConnectionSection from "@/components/sections/connection"
+import DumpFile from "@/components/sections/dumpFile"
 import ClientsSection from "@/components/sections/clients"
 import TroubleshootingSection from "@/components/sections/troubleshooting"
 import SecuritySection from "@/components/sections/security"
@@ -70,6 +71,12 @@ export default function Home() {
           {activeSection === "connection" && (
             <div className="max-w-4xl mx-auto px-6 py-12 prose-content">
               <ConnectionSection />
+            </div>
+          )}
+          
+          {activeSection === "dump-file" && (
+            <div className="max-w-4xl mx-auto px-6 py-12 prose-content">
+              <DumpFile />
             </div>
           )}
 

@@ -29,6 +29,11 @@ export default function TableOfContents({ setActiveSection }: TOCProps) {
       description: "Connect to your Oracle database",
     },
     {
+      id: "dump-file",
+      title: "Dump File",
+      description: "Export and import Oracle database dumps",
+    },
+    {
       id: "clients",
       title: "Client Libraries",
       description: "Language bindings and connection examples",
