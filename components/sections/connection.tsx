@@ -129,9 +129,14 @@ EXIT;`}</code>
       <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
         Oracle's official IDE for database development:
       </p>
-      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto mb-4 text-gray-800 dark:text-gray-200 transition-colors">
-        <code>{`brew install --cask sqldeveloper`}</code>
-      </pre>
+      <ul className="list-disc pl-6 mb-4 text-gray-700 dark:text-gray-300 transition-colors">
+        <li className="mb-2">
+         For Apple Silicon Mac : Download the ARM version from Oracle's website. <a href="https://download.oracle.com/otn_software/java/sqldeveloper/sqldeveloper-24.3.1.347.1826-macos-aarch64.app.zip">Click here to download</a>
+        </li>
+        <li className="mb-2">
+          For intel based macs : Download the MACOSX version form Oracle's website. <a href="https://download.oracle.com/otn_software/java/sqldeveloper/sqldeveloper-24.3.1.347.1826-macos-x64.app.zip">Click here to download</a>
+        </li>
+      </ul>
 
       <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
         Connection String Formats
