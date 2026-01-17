@@ -104,6 +104,14 @@ LOGFILE=expdp_schema.log`}</code>
       <h3 className="text-2xl font-semibold mb-2 text-gray-700 dark:text-gray-200 transition-colors">
         4. Copy Dump File to macOS
       </h3>
+      <p>
+        First we got to exit out of the bash terminal of the container. to do
+        that type{" "}
+        <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
+          exit
+        </code>{" "}
+        and press Enter.
+      </p>
       <p className="mb-2 text-gray-700 dark:text-gray-300 transition-colors">
         Replace{" "}
         <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded">
