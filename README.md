@@ -1,30 +1,45 @@
-# Oracle macOS guide
+# Oracle Installation Guide (macOS)
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+An interactive documentation site for installing and configuring Oracle Database on macOS. Built with Next.js and deployed on Vercel.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/darshan-regmis-projects/v0-oracle-mac-os-guide)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/n6akq1Aq7rr)
+## What It Covers
 
-## Overview
+- Prerequisites and system requirements
+- Quick start installation steps
+- Docker-based setup
+- Database connection configuration
+- Importing dump files
+- SQL clients setup
+- Troubleshooting common issues
+- Security best practices
+- Performance tuning
+- Maintenance tasks
+- FAQs
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Tech Stack
 
-## Deployment
+- **Framework**: Next.js 15 + React 19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Features**: Sidebar navigation, dark mode toggle, section-based routing
 
-Your project is live at:
+## Live Site
 
-**[https://vercel.com/darshan-regmis-projects/v0-oracle-mac-os-guide](https://vercel.com/darshan-regmis-projects/v0-oracle-mac-os-guide)**
+Deployed at: [https://vercel.com/darshan-regmis-projects/v0-oracle-mac-os-guide](https://vercel.com/darshan-regmis-projects/v0-oracle-mac-os-guide)
 
-## Build your app
+## Running Locally
 
-Continue building your app on:
+```bash
+pnpm install
+pnpm dev
+```
 
-**[https://v0.app/chat/n6akq1Aq7rr](https://v0.app/chat/n6akq1Aq7rr)**
+Open [http://localhost:3000](http://localhost:3000).
 
-## How It Works
+## Scripts
 
-1. Create and modify your project using [v0.app](https://v0.app).
-2. Deploy your chats from the v0 interface.
-3. Changes are automatically pushed to this repository.
-4. Vercel deploys the latest version from this repository.
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start dev server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Start production server |
