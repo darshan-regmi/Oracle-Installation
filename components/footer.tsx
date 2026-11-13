@@ -101,15 +101,6 @@ export default function Footer() {
               <p>
                 Instagram:{" "}
                 <a
-                  href="https://instagram.com/bydarshanregmi"
-                  className="text-primary hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @bydarshanregmi
-                </a>{" "}
-                /{" "}
-                <a
                   href="https://instagram.com/_darshan_regmi"
                   className="text-primary hover:underline"
                   target="_blank"
